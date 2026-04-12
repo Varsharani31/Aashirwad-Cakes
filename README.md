@@ -1,8 +1,85 @@
-# Aashirwad Cakes
+# Aashirwad Cakes – Online Cake Hub
 
-This is the repository for the Online Cake Hub project.
+Aashirwad Cakes is a web-based application developed for a home-based cake business.  
+It allows users to browse cakes, view details, and interact with the business online.
 
-## Directory Structure
-- `Frontend/`: Contains the frontend code.
-- `Backend/`: Contains the backend code.
-- `admin/`: Contains the admin panel code.
+---
+
+## Developed By
+
+Varsharani Pavankumar Kasliwal  
+GitHub: https://github.com/Varsharani31  
+
+---
+
+## Project Structure
+
+- Frontend/ – Contains the frontend code (UI/UX)  
+- Backend/ – Contains server-side logic and APIs  
+- admin/ – Contains admin panel for managing products and data  
+
+---
+
+## Features
+
+- User-friendly cake browsing interface  
+- Product display with details  
+- Admin panel for managing cakes  
+- Backend integration for handling data  
+- Responsive design for better user experience  
+
+---
+
+## Tech Stack
+
+- Frontend: React, HTML, CSS, JavaScript  
+- Backend: Node.js  
+- Database: MongoDB  
+- Tools: Git, GitHub, VS Code  
+
+---
+
+## Getting Started
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/Varsharani31/Aashirwad-Cakes.git
+cd Aashirwad-Cakes
+```
+
+### 2. Install Dependencies
+
+For Frontend:
+```bash
+cd Frontend
+npm install
+npm start
+```
+
+For Backend:
+```bash
+cd Backend
+npm install
+node server.js
+```
+
+---
+
+## Future Improvements
+
+- Online ordering system  
+- Payment integration  
+- User authentication  
+- Order tracking system  
+
+---
+
+## Contributing
+
+Contributions are welcome. Feel free to fork and improve the project.
+
+---
+
+## Support
+
+If you like this project, consider giving it a star on GitHub.
