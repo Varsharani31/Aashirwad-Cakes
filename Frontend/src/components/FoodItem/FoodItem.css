@@ -1,0 +1,230 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Food Display List */
+.food-display-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(5, 1fr)); /* Responsive grid layout */
+    gap: 20px;
+    padding: 20px;
+    margin-left: 10px;
+    
+}
+
+/* Food Item Container */
+.food-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1s ease;
+    background-color: #CAD6EC; /* Soft pastel background */
+    max-height: fit-content;
+}
+
+/* Food Image */
+.food-item-image-container {
+    position: relative;
+    width: auto;
+    padding-top: 70%; /* Maintains aspect ratio for responsiveness */
+}
+
+.food-item-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: 100%; /* Ensures images fill the container without distortion */
+    border-radius: 15px 15px 0px 0px;
+    transition: transform 0.3s ease;
+}
+
+.food-item:hover .food-item-image {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Add-to-bag button */
+.food-item-image-container .add {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    cursor: pointer;
+    background-color: #FFB8B6; /* Accent button color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.food-item-image-container .add:hover {
+    background-color: #FF7630; /* Lighter shade on hover */
+    transform: scale(1.1);
+}
+
+/* Counter container */
+.food-item-counter {
+    position: absolute;
+    height: 70px;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.food-item-counter:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Text inside the counter */
+.food-item-counter p {
+    font-size: 0.9rem;
+}
+
+/* Counter icons */
+.food-item-counter img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.food-item-counter img:hover {
+    transform: scale(1.2);
+}
+
+/* Food Item Information */
+.food-item-info {
+    padding: 20px;
+    width: auto;
+    background-color: #FFFFFF; /* Keep the info section background white for contrast */
+}
+
+.food-item-name-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.food-item-name-rating p {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #5AB4A6; /* Text color from template */
+        
+}
+
+.food-item-name-rating img {
+    width: 70px;
+    height: auto;
+    padding-bottom: 12px;
+}
+
+
+/* Price Styling */
+.food-item-price {
+    color: #75C7E4; /* Price color from template */
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 10px 0px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .food-display-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .food-item-name-rating p {
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .food-item-desc {
+        font-size: 0.9rem;
+    }
+
+    .food-item-price {
+        font-size: 1.4rem;
+    }
+
+    .food-item-counter img {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .food-display-list {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .food-item-name-rating p {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .food-item-name-rating img {
+        width: 50px;
+    }
+
+    .food-item-desc {
+        font-size: 0.8rem;
+    }
+
+    .food-item-price {
+        font-size: 1.2rem;
+    }
+
+    .food-item-counter img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.food-item-weight {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.food-item-weight label {
+  font-weight: 500;
+}
+
+.food-item-weight select {
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
