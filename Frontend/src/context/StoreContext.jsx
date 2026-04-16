@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { food_list as static_food_list } from "../assets/frontend_assets/assets.js";
 
 // Create context
 export const StoreContext = createContext(null);
@@ -15,9 +16,15 @@ const StoreContextProvider = (props) => {
     const fetchFoodList = async () => {
         try {
             const response = await axios.get(url + "/api/food/list");
-            setFoodList(response.data.data);
+            if (response.data.data && response.data.data.length > 0) {
+                setFoodList(response.data.data);
+            } else {
+                setFoodList(static_food_list);
+            }
         } catch (err) {
             console.error("Error fetching food list:", err.message);
+            // Fallback to static data on frontend
+            setFoodList(static_food_list);
         }
     };
 
@@ -76,10 +83,15 @@ const StoreContextProvider = (props) => {
     // Calculate total cart amount
     const getTotalCartAmount = () => {
         let total = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                const itemInfo = food_list.find(product => product._id === item);
-                if (itemInfo) total += itemInfo.price * cartItems[item];
+        for (const cartKey in cartItems) {
+            if (cartItems[cartKey] > 0) {
+                const [id, weight] = cartKey.split('_');
+                const actualWeight = weight || 'half'; // fallback for old data without _weight
+                const itemInfo = food_list.find(product => product._id === id);
+                if (itemInfo) {
+                    const price = actualWeight === 'half' ? itemInfo.price_half_kg : itemInfo.price_one_kg;
+                    total += price * cartItems[cartKey];
+                }
             }
         }
         return total;

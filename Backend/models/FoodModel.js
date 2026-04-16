@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 const foodSchema = new mongoose.Schema({
     name: { type: String, required: true },
    
-    price: { type: Number, required: true },
+    price_half_kg: { type: Number, required: true },
+    price_one_kg: { type: Number, required: true },
     image: { type: String, required: true },
     category: { type: String, required: true }
 });

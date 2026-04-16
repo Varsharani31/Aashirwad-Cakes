@@ -67,9 +67,26 @@ const PlaceOrder = () => {
       return;
     }
 
-    const orderItems = food_list
-      .filter((item) => cartItems[item._id] > 0)
-      .map((item) => ({ ...item, quantity: cartItems[item._id] }));
+    const orderItems = Object.keys(cartItems)
+      .filter((cartKey) => cartItems[cartKey] > 0)
+      .map((cartKey) => {
+        const [id, weight] = cartKey.split('_');
+        const actualWeight = weight || 'half';
+        const item = food_list.find((i) => i._id === id);
+        
+        if (!item) return null;
+
+        const price = actualWeight === 'half' ? item.price_half_kg : item.price_one_kg;
+        const weightLabel = actualWeight === 'half' ? '1/2 Kg' : '1 Kg';
+
+        return { 
+          ...item, 
+          name: `${item.name} (${weightLabel})`, 
+          price: price, 
+          quantity: cartItems[cartKey] 
+        };
+      })
+      .filter(Boolean); // Remove nulls if item was deleted
 
     if (orderItems.length === 0) {
       alert("No items selected!");

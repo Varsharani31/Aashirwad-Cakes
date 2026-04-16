@@ -22,11 +22,12 @@ GitHub: https://github.com/Varsharani31
 
 ## Features
 
-- User-friendly cake browsing interface  
-- Product display with details  
-- Admin panel for managing cakes  
-- Backend integration for handling data  
-- Responsive design for better user experience  
+- User-friendly cake browsing interface with responsive design
+- Product display with dynamic dual-pricing options (1/2 Kg and 1 Kg sizes)
+- Specialized "Home Made" theme featuring personalized bakery insights
+- Complete Admin panel for effortlessly managing cakes and inventory operations
+- High-resilient robust Backend database with built-in Offline Fallback Memory Mode
+- Premium Interactive UI elements powered with glassmorphism aesthetics  
 
 ---
 

@@ -4,11 +4,12 @@ import './FoodItem.css';
 import { assets } from '../../assets/frontend_assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, price, image }) => {
+const FoodItem = ({ id, name, price_half_kg, price_one_kg, image }) => {
     const { cartItems, addToCart, removeFromCart, url, token } = useContext(StoreContext);
-    const [selectedWeight, setSelectedWeight] = useState('1/2 kg'); // Default weight
+    const [selectedWeight, setSelectedWeight] = useState('half'); // Default weight
 
-    const itemCount = cartItems[id] || 0;
+    const cartItemId = `${id}_${selectedWeight}`;
+    const itemCount = cartItems[cartItemId] || 0;
 
     // Handle weight change
     const handleWeightChange = (e) => {
@@ -21,7 +22,7 @@ const FoodItem = ({ id, name, price, image }) => {
             alert("Please log in to add items to your cart");
             return;
         }
-        addToCart(id);
+        addToCart(cartItemId);
     };
 
     const handleRemoveClick = () => {
@@ -29,7 +30,7 @@ const FoodItem = ({ id, name, price, image }) => {
             alert("Please log in to remove items from your cart");
             return;
         }
-        removeFromCart(id);
+        removeFromCart(cartItemId);
     };
 
     return (
@@ -70,9 +71,14 @@ const FoodItem = ({ id, name, price, image }) => {
                     <p><strong>{name}</strong></p>
                 </div>
 
-               
+                <div className="food-item-weight-selector" style={{ margin: "10px 0" }}>
+                    <select value={selectedWeight} onChange={handleWeightChange} style={{ padding: "5px", borderRadius: "5px" }}>
+                        <option value="half">1/2 Kg</option>
+                        <option value="one">1 Kg</option>
+                    </select>
+                </div>
 
-                <p className="food-item-price">1/2 Kg Price : ₹{price}</p>
+                <p className="food-item-price">Price: ₹{selectedWeight === 'half' ? price_half_kg : price_one_kg}</p>
             </div>
         </div>
     );

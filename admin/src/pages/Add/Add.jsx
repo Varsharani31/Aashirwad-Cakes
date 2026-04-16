@@ -12,7 +12,8 @@ const Add = () => {
   const [data,setData] = useState({
     name:"",
     description:"",
-    price:"",
+    price_half_kg:"",
+    price_one_kg:"",
     category:"Birthday Cake"  
 
   })
@@ -28,7 +29,8 @@ const Add = () => {
     const formData = new FormData();
     formData.append("name",data.name)
     formData.append("description",data.description)
-    formData.append("price",Number(data.price))
+    formData.append("price_half_kg",Number(data.price_half_kg))
+    formData.append("price_one_kg",Number(data.price_one_kg))
     formData.append("category",data.category)
     formData.append("image",image)
 
@@ -37,7 +39,8 @@ const Add = () => {
       setData({
         name:"",
         description:"",
-        price:"",
+        price_half_kg:"",
+        price_one_kg:"",
         category:"Birthday Cake"  
     
       });
@@ -77,8 +80,12 @@ const Add = () => {
             </select>
           </div>
           <div className="add-price flex-coloumn">
-            <p>Product Price</p>
-            <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='₹20' />
+            <p>1/2 Kg Price</p>
+            <input onChange={onChangeHandler} value={data.price_half_kg} type="Number" name='price_half_kg' placeholder='₹20' />
+          </div>
+          <div className="add-price flex-coloumn">
+            <p>1 Kg Price</p>
+            <input onChange={onChangeHandler} value={data.price_one_kg} type="Number" name='price_one_kg' placeholder='₹40' />
           </div>
         </div>
         <button type='submit' className='add-btn'>ADD</button>

@@ -14,10 +14,10 @@ const Header = () => {
     <div className='header'>
       <div className="header-contents">
         <h2 className='header-heading'>
-          Order your favorite cake at Aashirwad Cakes and make every moment special!
+          AASHIRWAD CAKES - HOME MADE
         </h2>
         <p className='head-para'>
-          Celebrate life’s sweetest moments with a delicious cake that adds joy to every occasion. Big or small, a cake makes happiness even more special—treat yourself or a loved one today!
+          Celebrate life’s sweetest moments with a delicious cake that adds joy to every occasion. Birthday Cakes, Anniversary Cakes, Wedding Cakes, and Pastrys Available!
         </p>
        
       </div>

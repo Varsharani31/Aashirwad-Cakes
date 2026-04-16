@@ -1,19 +1,31 @@
 import fs from "fs/promises";
 import foodModel from "../models/foodModel.js";
 
+import mongoose from "mongoose";
+
+let inMemoryFoods = []; // Fallback memory store when DB is disconnected
+
 // Add food
 export const addFood = async (req, res) => {
   try {
     const image_filename = req.file.filename;
 
-    const food = new foodModel({
+    const foodData = {
       name: req.body.name,
-      price: req.body.price,
+      price_half_kg: req.body.price_half_kg,
+      price_one_kg: req.body.price_one_kg,
       category: req.body.category,
       image: image_filename,
-    });
+    };
 
-    await food.save();
+    if (mongoose.connection.readyState === 1) { // 1 = connected
+      const food = new foodModel(foodData);
+      await food.save();
+    } else {
+      foodData._id = Date.now().toString(); // Generate fallback fake ID
+      inMemoryFoods.push(foodData);
+    }
+
     res.json({ success: true, message: "Food added successfully" });
   } catch (error) {
     console.error("Error adding food:", error);
@@ -24,7 +36,13 @@ export const addFood = async (req, res) => {
 // List all food
 export const listFood = async (req, res) => {
   try {
-    const foods = await foodModel.find({});
+    let foods = [];
+    if (mongoose.connection.readyState === 1) {
+      foods = await foodModel.find({});
+    }
+    // Combine with in-memory foods
+    foods = [...foods, ...inMemoryFoods];
+    
     res.json({ success: true, data: foods });
   } catch (error) {
     console.error("Error listing food:", error);
@@ -35,19 +53,39 @@ export const listFood = async (req, res) => {
 // Remove food
 export const removefood = async (req, res) => {
   try {
-    const food = await foodModel.findById(req.body.id);
-    if (!food) {
+    const id = req.body.id;
+    let imageToDelete = null;
+    let foodFound = false;
+
+    if (mongoose.connection.readyState === 1) {
+      const food = await foodModel.findById(id);
+      if (food) {
+        imageToDelete = food.image;
+        await foodModel.findByIdAndDelete(id);
+        foodFound = true;
+      }
+    }
+
+    // Check in-memory fallback array
+    const memoryIndex = inMemoryFoods.findIndex(f => f._id === id);
+    if (memoryIndex !== -1) {
+      imageToDelete = inMemoryFoods[memoryIndex].image;
+      inMemoryFoods.splice(memoryIndex, 1);
+      foodFound = true;
+    }
+
+    if (!foodFound) {
       return res.json({ success: false, message: "Food not found" });
     }
 
-    // Try to delete image if it exists
-    try {
-      await fs.unlink(`uploads/${food.image}`);
-    } catch (err) {
-      console.warn(`Warning: Could not delete image ${food.image}. It might already be removed.`);
+    if (imageToDelete) {
+      try {
+        await fs.unlink(`uploads/${imageToDelete}`);
+      } catch (err) {
+        console.warn(`Warning: Could not delete image ${imageToDelete}. It might already be removed.`);
+      }
     }
 
-    await foodModel.findByIdAndDelete(req.body.id);
     res.json({ success: true, message: "Food removed successfully" });
   } catch (error) {
     console.error("Error removing food:", error);

@@ -21,17 +21,26 @@ const Cart = () => {
         </div>
         <br />
         
-        {food_list.map((item) => {
-          if (cartItems[item._id] > 0) {
+        {Object.keys(cartItems).map((cartKey) => {
+          if (cartItems[cartKey] > 0) {
+            const [id, weight] = cartKey.split('_');
+            const actualWeight = weight || 'half';
+            const item = food_list.find((i) => i._id === id);
+            
+            if (!item) return null;
+
+            const price = actualWeight === 'half' ? item.price_half_kg : item.price_one_kg;
+            const weightLabel = actualWeight === 'half' ? '1/2 Kg' : '1 Kg';
+
             return (
-              <div key={item._id}> {/* Adding the key here */}
+              <div key={cartKey}>
                 <div className="cart-items-title cart-items-item">
                   <img src={url+"/images/"+item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>₹{item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>₹{item.price * cartItems[item._id]}</p>
-                  <p onClick={() => { removeFromCart(item._id) }} className='cross'>x</p>
+                  <p>{item.name} ({weightLabel})</p>
+                  <p>₹{price}</p>
+                  <p>{cartItems[cartKey]}</p>
+                  <p>₹{price * cartItems[cartKey]}</p>
+                  <p onClick={() => { removeFromCart(cartKey) }} className='cross'>x</p>
                 </div>
               </div>
             );

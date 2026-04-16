@@ -15,7 +15,10 @@ const Footer = () => {
         <div className="footer-content-left">
           <img src={assets.logo} alt="Fresh Bake Logo" />
           <div className='box-paragraph'>
-               Aashirwad Cakes offers fresh, homemade delights made with love and the finest ingredients. Perfect for every special occasion, our cakes are ready for you to pick up from our shop, ensuring freshness and joy in every bite.          </div>
+              Aashirwad Cakes offers fresh, homemade delights made with love and the finest ingredients. Birthday Cakes, Anniversary Cakes, Wedding Cakes, and Pastries available!<br /><br />
+              <strong>Store Address:</strong><br />
+              H.no. 1228, Aashirwad, Samarthnagar,<br /> Jijamata-Varde Road, Oros.
+          </div>
           <br />
           <div className="footer-social-icons">
            <a href="https://www.youtube.com/channel/UCESBgLOJVnCBNbvA_Xd9OkA" target="_blank" rel="noopener noreferrer">
@@ -40,9 +43,9 @@ const Footer = () => {
         <div className="footer-content-right">
           <h2>Get in Touch</h2>
           <ul>
-             <li>Janhavi Khot : <a href="tel:7887432015">+91 78874 32015</a></li>
-            
-
+             <li><b>Janhavi Khot</b></li>
+             <li><a href="tel:7887432015">+91 7887432015</a></li>
+             <li><a href="tel:9370802228">+91 9370802228</a></li>
           </ul>
         </div>
       </div>
