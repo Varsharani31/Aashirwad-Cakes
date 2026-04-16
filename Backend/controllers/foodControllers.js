@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import foodModel from "../models/foodModel.js";
+import foodModel from "../models/FoodModel.js";
 
 import mongoose from "mongoose";
 
