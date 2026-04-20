@@ -96,12 +96,5 @@ export const food_list = [
     { _id: "14", name: "Kesar Kulfi", image: food_13, price_half_kg: 300, price_one_kg: 600, description: "1/2 kg: 300/-, 1 kg: 600/-", category: "Birthday Cake" },
     { _id: "15", name: "Oreo", image: food_14, price_half_kg: 340, price_one_kg: 640, description: "1/2 kg: 340/-, 1 kg: 640/-", category: "Birthday Cake" },
     { _id: "16", name: "Doll Cake", image: food_1, price_half_kg: 400, price_one_kg: 800, description: "1/2 kg: 400/-, 1 kg: 700/-", category: "Theme Cake" },
-    { _id: "17", name: "Customized Cake", image: food_2, price_half_kg: 500, price_one_kg: 1000, description: "Contact for sizing and prices", category: "Theme Cake" },
-
-    { _id: "18", name: "Computer Theme Cake", image: food_1, price_half_kg: 400, price_one_kg: 800, description: "Unique IT Theme Cake", category: "Theme Cake" },
-    { _id: "19", name: "Chocolate Oreo Cake", image: food_14, price_half_kg: 350, price_one_kg: 650, description: "Delicious Oreo Cake", category: "Birthday Cake" },
-    { _id: "20", name: "Pineapple Glaze Cake", image: food_1, price_half_kg: 320, price_one_kg: 600, description: "Fresh Pineapple Cake", category: "Birthday Cake" },
-    { _id: "21", name: "Pink Rose Fondant Cake", image: food_2, price_half_kg: 450, price_one_kg: 900, description: "Beautiful Rose Cake", category: "Theme Cake" },
-    { _id: "22", name: "Dark Chocolate Cake", image: food_7, price_half_kg: 350, price_one_kg: 650, description: "Rich Dark Chocolate", category: "Birthday Cake" }
-
+    { _id: "17", name: "Customized Cake", image: food_2, price_half_kg: 500, price_one_kg: 1000, description: "Contact for sizing and prices", category: "Theme Cake" }
 ]
